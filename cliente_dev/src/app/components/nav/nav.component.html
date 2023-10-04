@@ -1,0 +1,106 @@
+      <!-- Header (Topbar + Navbar), todo el encabezado -->
+<header class="cs-header">
+  
+    <!-- Navbar -->
+    <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
+    <div class="navbar navbar-expand-lg navbar-light bg-light navbar-sticky" data-fixed-element>
+      <div class="container px-0 px-xl-3">
+        <a href="index.html" class="navbar-brand order-lg-1 mr-0 pr-lg-3 mr-lg-4">
+          <img [src]="url + 'obtener_logo/' + config_global.logo" alt="ServiGT Logo" width="300">
+        </a>
+        <!-- Search desktop -->
+        <!-- <div class="input-group-overlay ml-4 d-lg-block d-none order-lg-3" style="max-width: 21rem;">
+          <input class="form-control appended-form-control" type="text" placeholder="Búsqueda">
+          <div class="input-group-append-overlay">
+            <span class="input-group-text"><i class="cxi-search lead align-middle"></i></span>
+          </div>
+        </div> -->
+        <!-- Toolbar -->
+        <div class="d-flex align-items-center order-lg-3">
+          <ul class="nav nav-tools flex-nowrap">
+
+              <ng-container *ngIf="user_lc==undefined">
+                <li class="nav-item d-lg-block d-none mb-0">
+                  <a [routerLink]="['/login']" class="nav-tool">
+                    <i class="cxi-profile nav-tool-icon"></i>
+                    <span class="nav-tool-label">Iniciar Sesión</span>
+                  </a>
+                </li>
+                
+              </ng-container>
+              <ng-container *ngIf="user_lc">
+                <li class="nav-item d-lg-block d-none dropdown">
+                <a class="nav-tool dropdown-toggle" toggle="dropdown" style="cursor: pointer;">
+                  <i class="cxi-profile nav-tool-icon"></i>
+                  <span class="nav-tool-label">{{user_lc.nombres}}</span>
+                </a>
+                <div class="dropdown-menu">
+
+                  <a [routerLink]="['/cuenta/perfil']" routerLinkActive="active"  class="dropdown-item">
+                    <i class="cxi-profile mr-2"></i>
+                    Perfil
+                    <!-- <span class="badge badge-pill badge-danger ml-2">3</span> -->
+                  </a>
+                  <!-- <a href="#" class="dropdown-item">
+                    <i class="cxi-comment mr-2"></i>
+                    Mensajes
+                    <span class="badge badge-pill badge-success ml-2">5</span>
+                  </a> -->
+                  <a (click)="logout()" [routerLink]="['/']" routerLinkActive="active" class="dropdown-item" style="cursor: pointer;">
+                    <i class="cxi-logout mr-2"></i>
+                    Cerrar sesión
+                  </a>
+                </div>
+              </li>
+              </ng-container>
+              
+
+            <li class="divider-vertical mb-0 d-lg-block d-none"></li>
+            <!-- <li class="nav-item align-self-center mb-0">
+              <a href="#" class="nav-tool pr-lg-0" data-toggle="offcanvas" data-target="cart">
+                <i class="cxi-cart nav-tool-icon"></i>
+                <span class="badge badge-success align-middle mt-n1 ml-2 px-2 py-1 font-size-xs">4</span>
+              </a>
+            </li> -->
+            <li class="divider-vertical mb-0 d-lg-none d-block"></li>
+            <li class="nav-item mb-0">
+              <button class="navbar-toggler mt-n1 mr-n3" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <!-- Navbar collapse -->
+        <nav class="collapse navbar-collapse order-lg-2" id="navbarCollapse">
+          <!-- Search mobile -->
+          <!-- <div class="input-group-overlay form-group mb-0 d-lg-none d-block">
+            <input type="text" class="form-control prepended-form-control rounded-0 border-0" placeholder="Busqueda...">
+            <div class="input-group-prepend-overlay">
+              <span class="input-group-text">
+                <i class="cxi-search font-size-lg align-middle mt-n1"></i>
+              </span>
+            </div>
+          </div> -->
+          <!-- Menu -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Inicio</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a [routerLink]="['/proveedores']" routerLinkActive="active" class="nav-link dropdown-toggle" data-toggle="dropdown">Oficios</a>
+              <ul class="dropdown-menu">
+
+                <li *ngFor="let item of config_global.categorias">
+                  <a [routerLink]="['/proveedores/categoria/',item.titulo.toLowerCase()]" routerLinkActive="router-link-active" class="dropdown-item">{{item.titulo}}</a>
+                </li>
+              </ul>
+              <li class="nav-item">
+                <a [routerLink]="['/contacto']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Contacto</a>
+              </li>
+           
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  

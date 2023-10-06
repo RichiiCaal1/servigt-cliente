@@ -153,6 +153,6 @@ export class InicioComponent implements OnInit {
         
       });
 
-    },500);
+    },1000);
   }
 }
